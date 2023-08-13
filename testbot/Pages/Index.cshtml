@@ -1,0 +1,26 @@
+﻿@page
+
+@using System.Web;
+@using Telegram.Bot.Extensions.LoginWidget;
+
+@model IndexModel
+@{
+    var generate = WidgetEmbedCodeGenerator.GenerateCallbackEmbedCode("online_sdelka_bot", "onTelegramAuth", "user");
+    ViewData["Title"] = "Home page";
+}
+@Html.AntiForgeryToken()
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <div id="tg_login" src="https://oauth.telegram.org/embed/online_sdelka_bot?origin=https%3A%2F%2F127.0.0.1%3A7243&return_to=https%3A%2F%2F127.0.0.1%3A7243%2F&size=large&request_access=write"></div>
+</div>
+
+@section scripts{
+    <script>    
+        $(document).ready(function () {
+            newWindow();
+            //generate(@generate);
+        });
+    </script>
+}
